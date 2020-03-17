@@ -1,11 +1,12 @@
 from flask import g, Flask, render_template, url_for
 import sqlite3
 
+PATH = 'db/jobs.sqlite'
+
 app = Flask(__name__)
-PATH = '../db/jobs.sqlite'
 
 def open_connection():
-    connection = getattr(g._connection, default=None)
+    connection = getattr(g, '_connection', None)
 
     if connection == None:
         connection = g._connection = sqlite3.connect(PATH)
